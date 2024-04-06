@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electrical Department Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+    <!-- Include Navbar -->
+<div id="navbar"></div>
+<script>
+    // Load Navbar
+    const navbarElement = document.getElementById('navbar');
+    navbarElement.innerHTML = '<object type="text/html" data="navbar.html" style="width: 100%; height: 100%;"></object>';
+</script>
+
+<!-- Main Content -->
+<div class="container mx-auto mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+    <!-- Load Card -->
+    <div class="bg-white rounded-md shadow-md p-4 hover:bg-green-100 cursor-pointer" onclick="showHourlyRecords('load')">
+        <h2 class="text-lg font-semibold mb-2">Load</h2>
+        <!-- Replace 'Load Value' with dynamic data -->
+        <p class="text-gray-700">Load Value: <span class="font-bold" id="loadValue">...</span> kW</p>
+    </div>
+
+    <!-- Current Card -->
+    <div class="bg-white rounded-md shadow-md p-4 hover:bg-green-100 cursor-pointer" onclick="showHourlyRecords('current')">
+        <h2 class="text-lg font-semibold mb-2">Current</h2>
+        <!-- Replace 'Current Value' with dynamic data -->
+        <p class="text-gray-700">Current Value: <span class="font-bold" id="currentValue">...</span> A</p>
+    </div>
+
+    <!-- Voltage Card -->
+    <div class="bg-white rounded-md shadow-md p-4 hover:bg-green-100 cursor-pointer" onclick="showHourlyRecords('voltage')">
+        <h2 class="text-lg font-semibold mb-2">Voltage</h2>
+        <!-- Replace 'Voltage Value' with dynamic data -->
+        <p class="text-gray-700">Voltage Value: <span class="font-bold" id="voltageValue">...</span> V</p>
+    </div>
+
+    <!-- Hourly Records Popup -->
+    <div id="hourlyRecordsPopup" class="hidden fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+        <div class="bg-white rounded-md shadow-md p-4">
+            <h2 class="text-lg font-semibold mb-2">Hourly Records</h2>
+            <table class="w-full border-collapse border border-gray-300">
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="border border-gray-300 px-4 py-2">Date</th>
+                        <th class="border border-gray-300 px-4 py-2">Hour</th>
+                        <th class="border border-gray-300 px-4 py-2">Value</th>
+                    </tr>
+                </thead>
+                <tbody id="hourlyRecordsTableBody"></tbody>
+            </table>
+            <button onclick="closeHourlyRecordsPopup()" class="mt-4 bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">Close</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Function to show hourly records based on type (load, current, voltage)
+    function showHourlyRecords(type) {
+        // Sample hourly records, replace with actual dynamic data
+        const hourlyRecords = [
+            { date: '2024-03-24', hour: '12:00 AM', value: 50 },
+            { date: '2024-03-24', hour: '1:00 AM', value: 55 },
+            { date: '2024-03-24', hour: '2:00 AM', value: 60 },
+            { date: '2024-03-24', hour: '3:00 AM', value: 65 },
+            // Add more records as needed
+        ];
+
+        // Clear previous records
+        const hourlyRecordsTableBody = document.getElementById('hourlyRecordsTableBody');
+        hourlyRecordsTableBody.innerHTML = '';
+
+        // Create and append records to table body
+        hourlyRecords.forEach(record => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="border border-gray-300 px-4 py-2">${record.date}</td>
+                <td class="border border-gray-300 px-4 py-2">${record.hour}</td>
+                <td class="border border-gray-300 px-4 py-2">${record.value} ${getUnit(type)}</td>
+            `;
+            hourlyRecordsTableBody.appendChild(row);
+        });
+
+        // Show hourly records popup
+        document.getElementById('hourlyRecordsPopup').classList.remove('hidden');
+    }
+
+    // Function to close hourly records popup
+    function closeHourlyRecordsPopup() {
+        document.getElementById('hourlyRecordsPopup').classList.add('hidden');
+    }
+
+    // Function to get unit based on type (load, current, voltage)
+    function getUnit(type) {
+        switch (type) {
+            case 'load':
+                return 'kW';
+            case 'current':
+                return 'A';
+            case 'voltage':
+                return 'V';
+            default:
+                return '';
+        }
+    }
+</script>
+<!-- Include Footer -->
+<div id="footer"></div>
+<script>
+    // Load Footer
+    const footerElement = document.getElementById('footer');
+    footerElement.innerHTML = '<object type="text/html" data="footer.html" style="width: 100%; height: 100%;"></object>';
+</script>
+</body>
+</html>

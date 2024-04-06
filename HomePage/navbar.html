@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+       
+
+      
+        .marquee {
+       overflow: hidden;
+       white-space: nowrap;
+   }
+
+      .marquee-content {
+       animation: marquee-animation 20s linear infinite;
+   }
+
+   @keyframes marquee-animation {
+       0% {
+           transform: translateX(100%);
+       }
+       100% {
+           transform: translateX(-100%);
+       }
+   }
+</style>
+
+</head>
+<body>
+    <nav class="bg-[#95D5B2]  fixed top-0 left-0 right-0 z-50 mx-auto">
+        <div class="container mx-auto flex justify-between items-center">
+            <div>
+                <span class="text-dark-green font-extrabold text-3xl tracking-wide">SPROUT</span>
+                <p class="text-dark-green text-lg">Sugarcane PROduction Utilization and Technology</p>
+            </div>
+      
+            <ul class="flex space-x-4">
+                <li><a href="http://127.0.0.1:5500/HomePage/index.html" class="text-white hover:text-[#1B4332]">Home</a></li>
+                <li><a href="http://127.0.0.1:5500/HomePage/Aboutus.html" class="text-white hover:text-[#1B4332]">About Us</a></li>
+                <li><a href="#statistics" class="text-white hover:text-[#1B4332]">Statistics</a></li>
+                <li><a href="http://127.0.0.1:5500/HomePage/Contactus.html" class="text-white hover:text-[#1B4332]">Contact Us</a></li>
+            </ul>
+        </div>
+      </nav>
+
+      <!-- Notification bar -->
+      
+    <div class="bg-lime-50 h-8 py-16 px-4 mb-0 text-center text-sm text-black marquee ">
+        <p class="marquee-content">This is an important announcement. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod porttitor augue id congue.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cane Yard Worker Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-emerald-50">
+
+    <!-- Include Navbar -->
+<div id="navbar"></div>
+<script>
+    // Load Navbar
+    const navbarElement = document.getElementById('navbar');
+    navbarElement.innerHTML = '<object type="text/html" data="navbar.html" style="width: 100%; height: 100%;"></object>';
+</script>
+
+<!-- Main Content -->
+<div class="container mx-auto mt-8">
+    <!-- Current Farmer Information -->
+    <div class="bg-white rounded-md shadow-md p-4 mb-4 hover:bg-green-100">
+        <h2 class="text-lg font-semibold mb-2">Current Crushing Cane Information</h2>
+        <!-- Sample data, replace with dynamic data -->
+        <p class="text-gray-700"><span class="font-bold">Farmer Name:</span> John Doe</p>
+        <p class="text-gray-700"><span class="font-bold">Cane Number:</span> 12345</p>
+        <p class="text-gray-700"><span class="font-bold">Date & Time:</span> March 24, 2024 10:00 AM</p>
+        <p class="text-gray-700"><span class="font-bold">Status:</span>Crushing Completed</p>
+
+    </div>
+    
+
+    <!-- Group Scheduling Table -->
+    <div class="bg-white rounded-md shadow-md p-4 mb-4">
+        <h2 class="text-lg font-semibold mb-2">Group Scheduling</h2>
+        <table class="w-full border-collapse border border-green-900">
+            <thead>
+                <tr class="bg-green-200">
+                    <th class="border border-green-900 px-4 py-2">Sr No.</th>
+                    <th class="border border-green-900 px-4 py-2">Date</th>
+                    <th class="border border-green-900 px-4 py-2">Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Sample data, replace with dynamic data -->
+                <tr class="hover:bg-green-300 cursor-pointer" onclick="showScheduledFarmers('March 24, 2024', '10:00 AM')">
+                    <td class="border border-green-900 px-4 py-2">1</td>
+                    <td class="border border-green-900 px-4 py-2">March 24, 2024</td>
+                    <td class="border border-green-900 px-4 py-2">10:00 AM</td>
+                </tr>
+                <tr class="hover:bg-green-300 cursor-pointer" onclick="showScheduledFarmers('March 24, 2024', '4:00 PM')">
+                    <td class="border border-green-900 px-4 py-2">2</td>
+                    <td class="border border-green-900 px-4 py-2">March 24, 2024</td>
+                    <td class="border border-green-900 px-4 py-2">4:00 PM</td>
+                </tr>
+                <tr class="hover:bg-green-300 cursor-pointer" onclick="showScheduledFarmers('March 25, 2024', '10:00 AM')">
+                    <td class="border border-green-900 px-4 py-2">3</td>
+                    <td class="border border-green-900 px-4 py-2">March 25, 2024</td>
+                    <td class="border border-green-900 px-4 py-2">10:00 AM</td>
+                </tr>
+                <tr class="hover:bg-green-300 cursor-pointer" onclick="showScheduledFarmers('March 25, 2024', '4:00 PM')">
+                    <td class="border border-green-900 px-4 py-2">4</td>
+                    <td class="border border-green-900 px-4 py-2">March 25, 2024</td>
+                    <td class="border border-green-900 px-4 py-2">4:00 AM</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal for displaying scheduled farmers -->
+<div id="modal" class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-center">
+    <div class="bg-white p-8 rounded-md shadow-md">
+        <h2 class="text-lg font-semibold mb-2">Scheduled Farmers</h2>
+        <table class="w-full border-collapse border border-green-900">
+            <thead>
+                <tr class="bg-green-200">
+                    <th class="border border-green-900 px-4 py-2">Farmer Name</th>
+                    <th class="border border-green-900 px-4 py-2">Cane Number</th>
+                    <th class="border border-green-900 px-4 py-2">Date</th>
+                    <th class="border border-green-900 px-4 py-2">Time</th>
+                    <th class="border border-green-900 px-4 py-2">Status</th>
+                </tr>
+            </thead>
+            <tbody id="scheduledFarmersTableBody"></tbody>
+        </table>
+        <button onclick="closeModal()" class="mt-4 bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600">Close</button>
+    </div>
+</div>
+
+<script>
+    // Function to show scheduled farmers for a specific date and time
+    function showScheduledFarmers(date, time) {
+        // Sample data, replace with dynamic data
+        const scheduledFarmers = [
+            { name: 'John Doe', caneNumber: '12345', date: 'March 24, 2024', time: '10:00 AM', status: 'Completed' },
+            { name: 'Jane Smith', caneNumber: '67890', date: 'March 24, 2024', time: '10:00 AM', status: 'Completed' },
+            { name: 'Alen Smith', caneNumber: '678980', date: 'March 24, 2024', time: '10:00 AM', status: 'Completed' },
+            { name: 'Alen Turing', caneNumber: '67990', date: 'March 24, 2024', time: '11:00 AM', status: 'Completed' },
+            { name: 'Prachi Patil', caneNumber: '67890', date: 'March 24, 2024', time: '11:00 AM', status: 'Completed' },
+            { name: 'Jennie Jass', caneNumber: '11111', date: 'March 24, 2024', time: '11:00 AM', status: 'Not Completed' },
+            { name: 'Hellosingh', caneNumber: '982728', date: 'March 24, 2024', time: '11:00 AM', status: 'Not Completed' },
+            { name: 'Rosy Alie', caneNumber: '67890', date: 'March 24, 2024', time: '11:00 AM', status: 'Not Completed' },
+            { name: 'Ruby Joe', caneNumber: '45124', date: 'March 24, 2024', time: '11:30 AM', status: 'Not Completed' },
+            { name: 'Jasmine Koi', caneNumber: '821545', date: 'March 24, 2024', time: '11:30 AM', status: 'Not Completed' },
+            { name: 'Jamme Julki', caneNumber: '55125', date: 'March 24, 2024', time: '11:30 AM', status: 'Not Completed' },
+            { name: 'Sufin Jonas', caneNumber: '5120', date: 'March 24, 2024', time: '11:30 AM', status: 'Not Completed' },
+            { name: 'Taylor Swift ', caneNumber: '612890', date: 'March 24, 2024', time: '11:45 AM', status: 'Not Completed' },
+            { name: 'Selena Gomez', caneNumber: '54520', date: 'March 24, 2024', time: '11:45 AM', status: 'Not Completed' },
+            // Add more scheduled farmers as needed
+        ];
+
+        // Clear previous table rows
+        const scheduledFarmersTableBody = document.getElementById('scheduledFarmersTableBody');
+        scheduledFarmersTableBody.innerHTML = '';
+
+        // Populate table with scheduled farmers
+        scheduledFarmers.forEach(farmer => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="border border-green-900 px-4 py-2">${farmer.name}</td>
+                <td class="border border-green-900 px-4 py-2">${farmer.caneNumber}</td>
+                <td class="border border-green-900 px-4 py-2">${farmer.date}</td>
+                <td class="border border-green-900 px-4 py-2">${farmer.time}</td>
+                <td class="border border-green-900 px-4 py-2">${farmer.status}</td>
+            `;
+            scheduledFarmersTableBody.appendChild(row);
+        });
+
+        // Show modal
+        document.getElementById('modal').classList.remove('hidden');
+    }
+
+    // Function to close modal
+    function closeModal() {
+        document.getElementById('modal').classList.add('hidden');
+    }
+</script>
+
+<!-- Include Footer -->
+<div id="footer"></div>
+<script>
+    // Load Footer
+    const footerElement = document.getElementById('footer');
+    footerElement.innerHTML = '<object type="text/html" data="footer.html" style="width: 100%; height: 100%;"></object>';
+</script>
+
+</body>
+</html>
